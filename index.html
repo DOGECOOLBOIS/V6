@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #000; /* Set background color to black */
+      color: #fff; /* Set text color to white */
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    #overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+      z-index: 999; /* Ensure overlay is above all other elements */
+      display: none; /* Initially hidden */
+    }
+
+    #content {
+      display: none;
+    }
+
+    .access-granted {
+      color: green;
+    }
+
+    .access-denied {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div id="overlay"></div>
+  <div id="content">
+  </div>
+  <script>
+    function checkCode() {
+      var secretCode = "473";
+      var inputCode = prompt("Enter the secret key:");
+
+      if (inputCode === null || inputCode === "" || inputCode !== secretCode) {
+        // Invalid key or cancelled
+        document.getElementById("content").innerHTML = '<h1 class="access-denied">Access Denied!</h1>';
+        setTimeout(function() {
+          window.location.href = 'about:blank';
+        }, 1000); // Redirect to about:blank after 1 second delay
+      } else {
+        // Correct key
+        localStorage.setItem("hiwid_key_used", "true");
+        document.getElementById("content").innerHTML = '<h1 class="access-granted">Access Granted!</h1>';
+        setTimeout(function() {
+          window.location.href = 'indexbutbetter.html';
+        }, 1000); // Redirect to indexbutbetter.html after 1 second delay
+      }
+    }
+
+    // Show overlay while entering the code
+    document.getElementById("overlay").style.display = "block";
+    checkCode();
+  </script>
+</body>
+</html>

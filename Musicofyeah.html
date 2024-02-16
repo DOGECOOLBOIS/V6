@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Music</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #controls {
+            margin-top: 20px;
+        }
+
+        button {
+            margin: 5px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        input[type="range"] {
+            margin: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+<audio id="backgroundMusic" loop>
+    <source src="" type="audio/mpeg">
+    Your browser does not support the audio tag.
+</audio>
+
+<div id="controls">
+    <label for="songSelector">Select a Song:</label>
+    <select id="songSelector">
+        <option value="music.mp3">Your are going down!</option>
+        <option value="I’m So Sorry.mp3">Im So Sorry</option>
+        <option value="Red.mp3">The Red Hood</option>
+        <option value="Monster.mp3">Monster</option>
+        <option value="Speaker man Ph0nk.mp3">Speaker man Ph0nk</option>
+        <option value="Destroyed.mp3">Destroid</option>
+        <option value="ULTIMATE FRIGGHT.mp3">ultimate fright </option>
+        <option value="DONT FORGET.mp3">DONT FORGET </option>
+        <option value="CRADLES.mp3">CRADLES</option>
+        <option value="BEFORE SONG.mp3">BEFORE</option>
+        <option value="Feel Invincible.mp3">Fell Invincible</option>
+        <option value="The Inside ya.mp3">The D inside ya NEW</option>
+        <option value="destroid pt2.mp3">F*nk hole NEW</option>
+        <!-- Add more options for additional songs -->
+    </select>
+    <br>
+    <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.5" onchange="changeVolume()">
+    <label for="volumeSlider">Volume</label>
+    <br>
+    <input type="range" id="speedSlider" min="0.5" max="2" step="0.1" value="1" onchange="changeSpeed()">
+    <label for="speedSlider">Speed</label>
+    <br>
+    <label for="headphonesMode">Headphones Mode:</label>
+    <input type="checkbox" id="headphonesMode" onchange="toggleHeadphonesMode()">
+    <br>
+    <button onclick="playMusic()">Play Background Music</button>
+    <button onclick="stopMusic()">Stop Music</button>
+</div>
+
+<script>
+    const backgroundMusic = document.getElementById('backgroundMusic');
+    const songSelector = document.getElementById('songSelector');
+    const volumeSlider = document.getElementById('volumeSlider');
+    const speedSlider = document.getElementById('speedSlider');
+    const headphonesModeCheckbox = document.getElementById('headphonesMode');
+
+    function playMusic() {
+        backgroundMusic.src = songSelector.value;
+        backgroundMusic.play();
+    }
+
+    function stopMusic() {
+        backgroundMusic.pause();
+        backgroundMusic.currentTime = 0;
+    }
+
+    function changeVolume() {
+        backgroundMusic.volume = volumeSlider.value;
+    }
+
+    function changeSpeed() {
+        backgroundMusic.playbackRate = speedSlider.value;
+    }
+
+    function toggleHeadphonesMode() {
+        if (headphonesModeCheckbox.checked) {
+            backgroundMusic.style.filter = "bass(200%) treble(200%)";
+        } else {
+            backgroundMusic.style.filter = "none";
+        }
+    }
+</script>
+
+</body>
+
+</html>

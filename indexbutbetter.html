@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<h1 style="color: white;">WELCOME!</h1>
+  <h1 style="color: rgb(255, 0, 0);">TO THE FLUID! WERE IN BETA FOR NOW VERSION V4 </h1>
+
+
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Key System</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+      }
+
+      #content {
+        display: none;
+      }
+
+      .access-granted {
+        color: green;
+        font-weight: bold;
+      }
+
+      .access-denied {
+        color: red;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <head>
+  </head>
+
+
+
+
+
+
+
+
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organized Buttons</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            padding-top: 20px; /* Add padding to push buttons below the top */
+            transition: background-color 0.5s ease; /* Add transition for background color change */
+        }
+
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        button {
+            background-color: #ff0000;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            margin: 10px;
+        }
+
+        button:hover {
+            background-color: #cc0000; /* Darker shade on hover */
+        }
+
+        /* Define background color classes */
+        .ocean-bg {
+            background-color: #0099cc; /* Ocean blue */
+        }
+
+        .lava-bg {
+            background-color: #ff6600; /* Lava orange */
+        }
+
+        .space-bg {
+            background-color: #333333; /* Space black */
+        }
+    </style>
+</head>
+
+<body class="ocean-bg"> <!-- Set default background color class -->
+    <div class="button-container" id="buttonContainer">
+        <button onclick="changeBackground('ocean')">Ocean</button>
+        <button onclick="changeBackground('lava')">Lava</button>
+        <button onclick="changeBackground('space')">Space</button>
+    </div>
+
+    <div class="button-container">
+        <button onclick="goTo('gam/DataSaver.html')">Data Saver</button>
+        <button onclick="goTo('gam/NOSKID.html')">Message For Kevin and groups</button>
+        <button onclick="goTo('TheLinks.html')">G*mes</button>
+        <button onclick="goTo('Musicofyeah.html')">Music</button>
+        <button onclick="goTo('gam/enter/emergancy.html')">Extras Emergency Links</button>
+        <button onclick="goTo('gam/enter/SupportGmail.html')">Updates</button>
+    </div>
+
+    <script>
+        // Function to change the background color
+        function changeBackground(background) {
+            document.body.className = background + "-bg";
+        }
+
+        // Function to navigate to other HTML pages
+        function goTo(url) {
+            window.location.href = url;
+        }
+    </script>
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Users Counter</title>
+</head>
+<body>
+
+<h1>Online Users Counter</h1>
+<p id="onlineUsers">Number of online users: <span id="count">0</span></p>
+
+<script>
+  // WebSocket connection
+  const socket = new WebSocket('wss://' + location.host);
+
+  // Counter for online users
+  let onlineCount = 0;
+
+  // Update the online users count when a new user connects
+  socket.addEventListener('open', () => {
+    console.log('WebSocket connection opened');
+  });
+
+  // Update the online users count when a user disconnects
+  socket.addEventListener('close', () => {
+    console.log('WebSocket connection closed');
+  });
+
+  // Listen for messages from the server to update the count
+  socket.addEventListener('message', (event) => {
+    const data = JSON.parse(event.data);
+
+    if (data.type === 'userCount') {
+      updateOnlineUsersCount(data.count);
+    }
+  });
+
+  // Function to update the online users count on the page
+  function updateOnlineUsersCount(count) {
+    onlineCount = count;
+    document.getElementById('count').innerText = onlineCount;
+  }
+</script>
+
+</body>
+
+
+
+
+  
+
+
+
+
+
+
+</html>
